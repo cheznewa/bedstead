@@ -2436,19 +2436,14 @@ adjust_weight()
 }
 
 static void
-blackpixel(int x, int y, int bl, int br, int tr, int tl)
+blackpixel(int x, int y)
 {
 	x *= XPIX_S; y *= YPIX_S;
 
-	if (bl)	moveto(x, y);
-	else { moveto(x+XQTR_S, y); lineto(x, y+YQTR_S); }
-	if (tl) lineto(x, y+YPIX_S);
-	else { lineto(x, y+YPIX_S-YQTR_S); lineto(x+XQTR_S, y+YPIX_S); }
-	if (tr) lineto(x+XPIX_S, y+YPIX_S);
-	else { lineto(x+XPIX_S-XQTR_S, y+YPIX_S);
-	       lineto(x+XPIX_S, y+YPIX_S-YQTR_S); }
-	if (br) lineto(x+XPIX_S, y);
-	else { lineto(x+XPIX_S, y+YQTR_S); lineto(x+XPIX_S-XQTR_S, y); }
+	moveto(x, y);
+	lineto(x, y+YPIX_S);
+	lineto(x+XPIX_S, y+YPIX_S);
+	lineto(x+XPIX_S, y);
 	closepath();
 }
 
@@ -2458,31 +2453,31 @@ whitepixel(int x, int y, int bl, int br, int tr, int tl)
 	x *= XPIX_S; y *= YPIX_S;
 
 	if (bl) {
-		moveto(x, y); lineto(x, y+YPIX_S-YQTR_S);
-		if (br) { lineto(x+XPIX_S/2, y+YPIX_S/2-YQTR_S);
-			  lineto(x+XQTR_S, y); }
-		else lineto(x+XPIX_S-XQTR_S, y);
+		moveto(x, y);
+		lineto(x, y+YPIX_S/2);
+		lineto(x+XPIX_S/2, y+YPIX_S/2);
+		lineto(x+XPIX_S/2, y);
 		closepath();
 	}
 	if (tl) {
-		moveto(x, y+YPIX_S); lineto(x+XPIX_S-XQTR_S, y+YPIX_S);
-		if (bl) { lineto(x+XPIX_S/2-XQTR_S, y+YPIX_S/2);
-			lineto(x, y+YPIX_S-YQTR_S); }
-		else lineto(x, y+YQTR_S);
+		moveto(x, y+YPIX_S);
+		lineto(x+XPIX_S/2, y+YPIX_S);
+		lineto(x+XPIX_S/2, y+YPIX_S/2);
+		lineto(x, y+YPIX_S/2);
 		closepath();
 	}
 	if (tr) {
-		moveto(x+XPIX_S, y+YPIX_S); lineto(x+XPIX_S, y+YQTR_S);
-		if (tl) { lineto(x+XPIX_S/2, y+YPIX_S/2+YQTR_S);
-			lineto(x+XPIX_S-XQTR_S, y+YPIX_S); }
-		else lineto(x+XQTR_S, y+YPIX_S);
+		moveto(x+XPIX_S, y+YPIX_S);
+		lineto(x+XPIX_S, y+YPIX_S/2);
+		lineto(x+XPIX_S/2, y+YPIX_S/2);
+		lineto(x+XPIX_S/2, y+YPIX_S);
 		closepath();
 	}
 	if (br) {
-		moveto(x+XPIX_S, y); lineto(x+XQTR_S, y);
-		if (tr) { lineto(x+XPIX_S/2+XQTR_S, y+YPIX_S/2);
-			lineto(x+XPIX_S, y+YQTR_S); }
-		else lineto(x+XPIX_S, y+YPIX_S-YQTR_S);
+		moveto(x+XPIX_S, y);
+		lineto(x+XPIX_S/2, y);
+		lineto(x+XPIX_S/2, y+YPIX_S/2);
+		lineto(x+XPIX_S, y+YPIX_S/2);
 		closepath();
 	}
 }
@@ -2506,21 +2501,7 @@ dochar(char const data[YSIZE], unsigned flags)
 	for (x = 0; x < XSIZE; x++) {
 		for (y = 0; y < YSIZE; y++) {
 			if (GETPIX(x, y)) {
-				bool tl, tr, bl, br;
-
-				/* Assume filled in */
-				tl = tr = bl = br = true;
-				/* Check for diagonals */
-				if ((UL && !U && !L) || (DR && !D && !R))
-					tr = bl = false;
-				if ((UR && !U && !R) || (DL && !D && !L))
-					tl = br = false;
-				/* Avoid odd gaps */
-				if (L || UL || U) tl = true;
-				if (R || UR || U) tr = true;
-				if (L || DL || D) bl = true;
-				if (R || DR || D) br = true;
-				blackpixel(x, YSIZE - y - 1, bl, br, tr, tl);
+				blackpixel(x, YSIZE - y - 1);
 			} else {
 				bool tl, tr, bl, br;
 
