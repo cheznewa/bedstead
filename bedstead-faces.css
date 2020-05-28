@@ -1,0 +1,40 @@
+/*
+ * This file defines @font-face rules to make the various standard
+ * Bedstead fonts available in CSS.
+ */
+
+@font-face {
+    font-family: Bedstead;
+    font-stretch: expanded;
+    src: url(bedstead-extended.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Bedstead;
+    font-stretch: normal;
+    src: url(bedstead.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Bedstead;
+    font-stretch: semi-condensed;
+    src: url(bedstead-semicondensed.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Bedstead;
+    font-stretch: condensed;
+    src: url(bedstead-condensed.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Bedstead;
+    font-stretch: extra-condensed;
+    src: url(bedstead-extracondensed.otf) format("opentype");
+}
+
+@font-face {
+    font-family: Bedstead;
+    font-stretch: ultra-condensed;
+    src: url(bedstead-ultracondensed.otf) format("opentype");
+}
