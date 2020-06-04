@@ -3,7 +3,7 @@ Mirror of http://bjh21.me.uk/bedstead/ with small changes to render pixels inste
 
 ## Downloads
 
-For font files see: http://www.galax.xyz/Teletext50/
+For font files see: http://galax.xyz/Teletext50/
 
 ## Example
 
