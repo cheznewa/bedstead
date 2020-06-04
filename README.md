@@ -7,7 +7,7 @@ For font files see: http://www.galax.xyz/Teletext50/
 
 ## Example
 
-A small site I created that replicates the look and feel of Teletext on a TV can be found here: http://mcfctoronto.ca - a screenshot is below
+A small site I created that replicates the look and feel of Teletext on a TV can be found here: https://mcfctoronto.ca - a screenshot is below
 
 ![MCFC Toronto Example](https://raw.githubusercontent.com/glxxyz/bedstead/master/samples/MCFCToronto.png)
 
