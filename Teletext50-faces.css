@@ -7,42 +7,42 @@
 @font-face {
     font-family: Teletext50;
     font-stretch: normal;
-    src: url(Teletext50.otf) format("opentype");
+    src: url(Teletext50.ttf) format("truetype");
 }
 
 /* Half Default Width (for double height text) */
 @font-face {
     font-family: Teletext50;
     font-stretch: ultra-condensed;
-    src: url(Teletext50-ultracondensed.otf) format("opentype");
+    src: url(Teletext50-ultracondensed.ttf) format("truetype");
 }
 
 /* Square Pixels (widest) */
 @font-face {
     font-family: Teletext50;
     font-stretch: expanded;
-    src: url(Teletext50-extended.otf) format("opentype");
+    src: url(Teletext50-extended.ttf) format("truetype");
 }
 
 /* Hald-Width Square Pixels (for double height) */
 @font-face {
     font-family: Teletext50;
     font-stretch: extra-condensed;
-    src: url(Teletext50-extracondensed.otf) format("opentype");
+    src: url(Teletext50-extracondensed.ttf) format("truetype");
 }
 
 /* More Condensed */
 @font-face {
     font-family: Teletext50;
     font-stretch: semi-condensed;
-    src: url(Teletext50-semicondensed.otf) format("opentype");
+    src: url(Teletext50-semicondensed.ttf) format("truetype");
 }
 
 /* Most Condensed */
 @font-face {
     font-family: Teletext50;
     font-stretch: condensed;
-    src: url(Teletext50-condensed.otf) format("opentype");
+    src: url(Teletext50-condensed.ttf) format("truetype");
 }
 
 
