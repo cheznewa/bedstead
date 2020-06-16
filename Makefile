@@ -2,10 +2,10 @@ FONTBASES = Teletext50 Teletext50-extended Teletext50-semicondensed \
             Teletext50-condensed Teletext50-extracondensed Teletext50-ultracondensed
 
 SFDFILES = $(addsuffix .sfd, $(FONTBASES))
-OTFFILES = $(addsuffix .otf, $(FONTBASES))
+TTFFILES = $(addsuffix .ttf, $(FONTBASES))
 
 DISTFILES = bedstead.c Makefile COPYING NEWS \
-	$(OTFFILES) \
+	$(TTFFILES) \
 	Teletext50-10.bdf Teletext50-20.bdf \
 	Teletext50-10-df.png Teletext50-20-df.png \
 	Teletext50-complement.pdf
@@ -15,9 +15,9 @@ all: $(DISTFILES) \
      sample-black-text.png
 
 .PHONY: experimental
-experimental: Teletext50-chiseltip.otf Teletext50-plotter-thin.otf \
- Teletext50-plotter-light.otf Teletext50-plotter-medium.otf \
- Teletext50-plotter-bold.otf plotter.png
+experimental: Teletext50-chiseltip.ttf Teletext50-plotter-thin.ttf \
+ Teletext50-plotter-light.ttf Teletext50-plotter-medium.ttf \
+ Teletext50-plotter-bold.ttf plotter.png
 
 Teletext50.sfd: bedstead
 	./bedstead > Teletext50.sfd
@@ -53,29 +53,29 @@ Teletext50-chiseltip.sfd: strokefont.py Teletext50-oc.sfd
 	    -c 'Open($$1); BitmapsAvail([10, 20]); Generate($$2, "bdf")' \
 	    $< $*.
 
-%.otf: %.sfd
+%.ttf: %.sfd
 	fontforge -lang=ff \
 	    -c 'Open($$1); Generate($$2)' \
-	    $< $*.otf
+	    $< $*.ttf
 
-sample-black-text.png: sample-black-text.ps $(OTFFILES) Fontmap
+sample-black-text.png: sample-black-text.ps $(TTFFILES) Fontmap
 	gs -P -q -dSAFER -sDEVICE=pnggray -dTextAlphaBits=4 -o $@ $<
 
-sample-white-text.png: sample-white-text.ps $(OTFFILES) Fontmap
+sample-white-text.png: sample-white-text.ps $(TTFFILES) Fontmap
 	gs -P -q -dSAFER -sDEVICE=pngalpha -dTextAlphaBits=4 -o $@ $<
 
-Teletext50-%-df.png: df.ps Teletext50.otf Fontmap
+Teletext50-%-df.png: df.ps Teletext50.ttf Fontmap
 	gs -P -q -dSAFER -dsize=$* -sDEVICE=png16m -o $@ $<
 
 Teletext50-complement.ps: bedstead
 	./bedstead --complement > Teletext50-complement.ps
 
-Teletext50-complement.pdf: Teletext50-complement.ps Teletext50.otf Fontmap
+Teletext50-complement.pdf: Teletext50-complement.ps Teletext50.ttf Fontmap
 	ps2pdf -P $< $@
 
 .PHONY: clean
 clean:
-	rm -f bedstead *.sfd *.otf *.bdf *.png *.pdf Teletext50-complement.ps
+	rm -f bedstead *.sfd *.ttf *.bdf *.png *.pdf Teletext50-complement.ps
 
 .PHONY: dist
 
